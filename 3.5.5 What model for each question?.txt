@@ -1,0 +1,53 @@
+Models to think about using:
+
+Linear/Logistic Regression (w/Lasso or Ridge)
+Decision Tree Classifier/Regressor
+Random Forest Classifier/Regressor
+SVM Classifier/Regressor
+Gradient Boosting any other model
+KNN Classifier/Regressor
+Naive Bayes
+
+1. Predict the running times of prospective Olympic sprinters using data from the last 20 Olympics.
+
+Sounds like a regression problem — I’d probably start out with a simple linear regression model, then try a couple more computationally intensive models like SVR and Random Forest to see if they gave a significantly different result. There isn’t a lot of data here, so I doubt it would make much difference.
+
+
+2. You have more features (columns) than rows in your dataset.
+
+Definitely implement some kind of feature reduction — Maybe LASSO, or maybe go straight to eliminating features with SelectKBest, PCA, RFE, or Random Forest feature_importances.
+
+
+3. Identify the most important characteristic predicting likelihood of being jailed before age 20.
+
+This is a problem where the goal is actually feature elimination. I’d do similar to above — use Random Forest feature_importances, RFE, and SelectKBest. I’d also be interested in knowing how some of those important features are related to each other, so I’d probably run a correlation analysis on those. Are they all similar ways of saying the same thing?
+
+
+4. Implement a filter to “highlight” emails that might be important to the recipient
+
+Classic classifier problem. I might start with something quick and easy - Naive Bayes. Maybe I could run a Random Forest classifier to pick out some of the most important features, then reduce the dimensionality of the data set by just focusing on the top few hundred predictive words. From there, it would just be a matter of seeing what does the best job — Naive Bayes, SVC, Random Forest Classifier, Decision Tree etc.
+
+
+5. You have 1000+ features.
+
+Depending on the number of data points, we might want to reduce the dimensionality here. I’d see how it worked with PCA, SelectKBest, Random Forest Importances, and maybe RFE if I have a lot of processor time. 
+
+
+6. Predict whether someone who adds items to their cart on a website will purchase the items.
+
+Another standard classifier problem. We could start out with Naive Bayes again, then move onto decision trees, then random forest and SVC. 
+
+
+7. Your dataset dimensions are 982400 x 500
+
+I’d want to reduce the number of features, if possible, using PCA, RFE, SelectKBest, or similar. Then the model depends on the question.
+
+
+8. Identify faces in an image.
+
+This is a classifier problem, so we could use SVC, Random Forest, etc for it, but we’d probably be better served by a CNN.
+
+
+9. Predict which of three flavors of ice cream will be most popular with boys vs girls.
+
+Another classifier problem — Decision tree, random forest, SVC, etc. If the ONLY data is whether they are boys or girls, then it might be simple logistic regression. 
